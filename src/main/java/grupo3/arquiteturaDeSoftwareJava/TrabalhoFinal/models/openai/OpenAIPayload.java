@@ -1,8 +1,6 @@
 package grupo3.arquiteturaDeSoftwareJava.TrabalhoFinal.models.openai;
 
 import java.util.List;
-
-import grupo3.arquiteturaDeSoftwareJava.TrabalhoFinal.interfaces.IFunction;
 import lombok.Getter;
 import lombok.Setter;
 

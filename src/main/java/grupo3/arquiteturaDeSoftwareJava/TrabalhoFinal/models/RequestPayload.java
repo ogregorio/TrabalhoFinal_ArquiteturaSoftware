@@ -1,14 +1,8 @@
 package grupo3.arquiteturaDeSoftwareJava.TrabalhoFinal.models;
 
+import lombok.Data;
+
+@Data
 public class RequestPayload {
-
     private String question;
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
 }
