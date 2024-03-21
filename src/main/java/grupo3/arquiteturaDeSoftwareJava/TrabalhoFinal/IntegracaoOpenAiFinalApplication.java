@@ -40,19 +40,26 @@ public class IntegracaoOpenAiFinalApplication implements CommandLineRunner {
 		System.out.println("Digite 'sair' a qualquer momento para sair.");
 		System.out.print("Digite seu token: ");
 		String token = scanner.nextLine();
+
 		while (true) {
 			System.out.print("Digite sua pergunta: ");
 			String question = scanner.nextLine();
 
-			Content func = openAiService.getFunction(question, token);
-			String message = functionService.execute(func.getFunction(), func.getProperties());
+			try {
+				Content func = openAiService.getFunction(question, token);
+				String message = functionService.execute(func.getFunction(), func.getProperties());
+
+				System.out.println("Resposta: " + message);
+
+			} catch (Exception e) {
+				System.out.println("Ocorreu um erro para responder a sua pergunta...");
+			}
 
 			if (question.equalsIgnoreCase("sair")) {
 				System.out.println("Saindo do ChatCLI...");
 				break;
 			}
 
-			System.out.println("Resposta: " + message);
 		}
 
 		scanner.close();

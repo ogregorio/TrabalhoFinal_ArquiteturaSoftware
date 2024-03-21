@@ -81,7 +81,6 @@ public class OpenAIService {
             String arguments = jsonResponse.get("choices").get(0).get("message").get("function_call").get("arguments").asText();
             return new Content(function, arguments);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
