@@ -36,10 +36,7 @@ public class OpenAIService {
 	 */
     public Content getFunction(String prompt, String authorization) {
         String endpoint = "https://api.openai.com/v1/chat/completions";
-        String token = authorization.split(" ")[1];
-        if (token == null) {
-            return null;
-        }
+        String token = authorization;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
