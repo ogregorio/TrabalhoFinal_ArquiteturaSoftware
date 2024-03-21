@@ -94,7 +94,7 @@ public class BuscarArtigosFunction implements IFunction {
         // definition of a function in OpenAI Contract
         Function function = new Function();
         function.setName("BuscarArtigos");
-        function.setDescription("Retorna uma lista de artigos dado o termo de pesquisa.");
+        function.setDescription("Search articles in english.");
         function.setRequired(new String[] { "query" });
 
         // Definition of parameters in OpenAI Contract
@@ -102,7 +102,7 @@ public class BuscarArtigosFunction implements IFunction {
         parameter.setType("object");
         Map map = new HashMap<>();
         map.put("type", "string");
-        map.put("description", "query to search journals in core api database in english");
+        map.put("description", "query term to search journals in english. terms need to be in english.");
         parameter.setProperties(Map.ofEntries(new AbstractMap.SimpleEntry("query", map)));
         function.setParameters(parameter);
 
