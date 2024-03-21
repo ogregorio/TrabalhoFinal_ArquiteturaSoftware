@@ -12,21 +12,28 @@ import grupo3.arquiteturaDeSoftwareJava.TrabalhoFinal.models.openai.OpenAIPayloa
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class OpenAIService {
-    @Autowired
+    
+	@Autowired
     private List<IFunction> functions;
 
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
+	@Autowired
+	private RestTemplate restTemplate;
+	
+	/**
+	 * 
+	 * @param prompt (pergunta)
+	 * @param authorization
+	 * @return
+	 */
     public Content getFunction(String prompt, String authorization) {
         String endpoint = "https://api.openai.com/v1/chat/completions";
         String token = authorization.split(" ")[1];
@@ -41,7 +48,7 @@ public class OpenAIService {
         String requestBody = buildRequestBody(prompt);
         HttpEntity<String> request = new HttpEntity<>(requestBody, headers);
 
-        ResponseEntity<String> response = restTemplate().postForEntity(endpoint, request, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(endpoint, request, String.class);
 
         if (response.getStatusCode() == HttpStatus.OK) {
             return extractContent(response.getBody());
@@ -51,9 +58,8 @@ public class OpenAIService {
     }
 
     private String buildRequestBody(String prompt) {
-        List messages = new ArrayList() {{
-            add(new Message(prompt));
-        }};
+        List<Message> messages = new ArrayList();
+        messages.add(new Message(prompt));
 
         Function[] definitions = new Function[functions.size()];
 

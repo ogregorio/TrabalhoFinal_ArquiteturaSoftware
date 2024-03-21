@@ -1,14 +1,16 @@
 package grupo3.arquiteturaDeSoftwareJava.TrabalhoFinal.models;
 
-import lombok.Getter;
+import lombok.Data;
 
+@Data
 public class Content {
 
-    @Getter final String function;
-    @Getter private final String properties;
+    private String function;
+    private String properties;
 
     public Content(String function, String properties) {
         this.function = function;
         this.properties = properties;
     }
+    
 }

@@ -1,11 +1,10 @@
 package grupo3.arquiteturaDeSoftwareJava.TrabalhoFinal.models.openai;
 
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+import lombok.Data;
+
+@Data
 public class OpenAIPayload {
     private List<Message> messages;
     private Function[] functions;

@@ -12,17 +12,11 @@ import org.springframework.web.bind.annotation.*;
 class OpenAIController {
 
 	@Autowired
-	private final FunctionExecutorService functionService;
+	private FunctionExecutorService functionService;
 
 	@Autowired
-	private final OpenAIService openAiService;
-
-	@Autowired
-	public OpenAIController(FunctionExecutorService functionService, OpenAIService openAiService) {
-		this.functionService = functionService;
-		this.openAiService = openAiService;
-	}
-
+	private OpenAIService openAiService;
+	
 	@PostMapping("/ask")
 	public ResponseEntity<String> ask(@RequestBody RequestPayload reqBody, @RequestHeader("Authorization") String auth) {
 		Content func = openAiService.getFunction(reqBody.getQuestion(), auth);

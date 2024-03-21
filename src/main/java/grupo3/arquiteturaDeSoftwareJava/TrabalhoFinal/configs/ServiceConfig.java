@@ -4,6 +4,7 @@ import grupo3.arquiteturaDeSoftwareJava.TrabalhoFinal.service.FunctionExecutorSe
 import grupo3.arquiteturaDeSoftwareJava.TrabalhoFinal.service.OpenAIService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class ServiceConfig {
@@ -16,5 +17,10 @@ public class ServiceConfig {
     @Bean
     public OpenAIService openAIService() {
         return new OpenAIService();
+    }
+    
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
